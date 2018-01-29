@@ -19,3 +19,7 @@ CREATE TABLE `detalle_caja_chica` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
+ALTER TABLE `php_db`.`detalle_caja_chica` 
+CHANGE COLUMN `valor_documento` `valor_documento` DECIMAL(16,2) NULL DEFAULT NULL ;
+
+

@@ -9,30 +9,61 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-<script type="text/javascript" src="cajas.js"></script>
+
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.2/angular-materialize.min.js"></script>
+
+    <script type="text/javascript" src="cajas.js"></script>
 
 
 </head>
-<body>
 
 <div class="jumbotron text-center">
-  <h1>Caja Chica</h1>
-  <p>Listado de cajas.</p>
+    <h1>Cajas Chicas</h1>
+    <p>En esta sección encontrará una colección con sus cajas chicas creadas, en las cuales podrá agregar o editar documentos/facturas.</p>
 </div>
 
-
-
+<body ng-app="caja_chica" ng-controller="listadoController">
 
 
 <div class="container">
 
 
+<!--    <ul class="collection animated fadeIn">-->
+<!--    <li class="collection-item" ng-repeat="x in myBoxes">{{x.fecha_hora}}</li>-->
+<!--    </ul>-->
 
 
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Fecha y hora</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  ng-repeat="x in myBoxes">
+            <td>{{x.fecha_hora}}</td>
+            <td>{{x.valor_inicial | currency:"Q. "}}</td>
+            <td><button type="button" class="btn btn-primary btn-sm">Editar</button></td>
+        </tr>
+        </tbody>
+    </table>
 
 </div>
 
+
+
+
 </body>
+
+
+
+
+
 </html>
 
 <style>
