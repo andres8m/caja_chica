@@ -5,7 +5,7 @@ var scotchApp = angular.module('caja_chica', [])
 
 
         $scope.myBoxes= [];
-        $scope.activeCash=[];
+        $scope.activeCashArray=[];
         $scope.activeCashId ="";
         $scope.step =1;
 
@@ -32,7 +32,23 @@ var scotchApp = angular.module('caja_chica', [])
                     // console.log(response);
                     $scope.activeCashObj =obj;
                     $scope.step =2;
-                    $scope.activeCash = response.data;
+                    $scope.activeCashArray = response.data;
+                },
+                function(error){
+                    // console.log($scope.trialCompany);
+                    $scope.errorsFounded = error.data.message;
+                    alert($scope.errorsFounded);
+
+                }
+            );
+        };
+
+        $scope.deleteDoc = function (obj) {
+            $http.get("/caja_chica/eliminar_documento.php?link="+obj.id).then
+            (
+                function(response)
+                {
+                  $scope.getDetails($scope.activeCashObj);
                 },
                 function(error){
                     // console.log($scope.trialCompany);

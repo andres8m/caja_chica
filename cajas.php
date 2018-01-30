@@ -67,31 +67,90 @@
             <h5>Valor inicial de la caja: {{activeCashObj.valor_inicial | currency:"Q. "}}</h5>
         </div>
 
-        <table class="table" >
+        <div class="row">
+            <table class="table" >
 
 
-            <br>
-            <thead>
-            <tr>
-                <th scope="col">Numero</th>
-                <th scope="col">Tipo de documento</th>
-                <th scope="col">Valor de documento</th>
-                <th scope="col">Nota</th>
-                <th scope="col">Fecha</th>
-                <th scope="col">Acciones</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr  ng-repeat="x in activeCash">
-                <td>{{x.id}}</td>
-                <td>{{x.tipo_documento}}</td>
-                <td>{{x.valor_documento | currency:"Q. "}}</td>
-                <td>{{x.nota}}</td>
-                <td>{{x.date}}</td>
-                <td><button type="button" class="btn btn-primary btn-sm" ng-click="">Eliminar</button></td>
-            </tr>
-            </tbody>
-        </table>
+                <br>
+                <thead>
+                <tr>
+                    <th scope="col">Numero</th>
+                    <th scope="col">Tipo de documento</th>
+                    <th scope="col">Valor de documento</th>
+                    <th scope="col">Nota</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr  ng-repeat="x in activeCashArray">
+                    <td>{{x.id}}</td>
+                    <td>{{x.tipo_documento}}</td>
+                    <td>{{x.valor_documento | currency:"Q. "}}</td>
+                    <td>{{x.nota}}</td>
+                    <td>{{x.date}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm" ng-click="deleteDoc(x)">Eliminar</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Añadir nuevo documento
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Añadir documento</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Tipo de Documento</label>
+                                <select class="form-control" id="selectDocType" name="selectDocType">
+                                    <option value="Factura">Factura</option>
+                                    <option value="Recibo">Recibo</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <span class="input-group-addon">Q</span>
+                                <span class="input-group-addon">0.00</span>
+                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="valorDinero"
+                                       name="valorDinero">
+                            </div>
+                            <br>
+
+                            <div class="input-group">
+                                <!--                       <span class="input-group-addon" id="basic-addon1">Nota</span>
+                                 -->                 <input type="text" class="form-control" placeholder="Nota"
+                            aria-describedby="basic-addon1" id="notaDesc" name="notaDesc">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <input type="date" class="form-control" id="documentDate" name="documentDate">
+                            </div>
+                            <br>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
     </div>
@@ -99,6 +158,7 @@
 
 
 </div>
+
 
 
 
