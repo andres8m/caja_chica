@@ -36,9 +36,10 @@
 <!--    </ul>-->
 
 
-    <table class="table">
+    <table class="table" ng-if="step==1">
         <thead>
         <tr>
+            <th scope="col">Numero de Caja</th>
             <th scope="col">Fecha y hora</th>
             <th scope="col">Valor</th>
             <th scope="col">Acciones</th>
@@ -46,12 +47,56 @@
         </thead>
         <tbody>
         <tr  ng-repeat="x in myBoxes">
+            <td>{{x.id}}</td>
             <td>{{x.fecha_hora}}</td>
             <td>{{x.valor_inicial | currency:"Q. "}}</td>
-            <td><button type="button" class="btn btn-primary btn-sm">Editar</button></td>
+            <td><button type="button" class="btn btn-primary btn-sm" ng-click="getDetails(x)">Editar</button></td>
         </tr>
         </tbody>
     </table>
+
+    <div ng-if="step==2">
+        <div class="row">
+            <div align="center">
+                <h3>Caja numero {{activeCashObj.id}}</h3>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <h5>Valor inicial de la caja: {{activeCashObj.valor_inicial | currency:"Q. "}}</h5>
+        </div>
+
+        <table class="table" >
+
+
+            <br>
+            <thead>
+            <tr>
+                <th scope="col">Numero</th>
+                <th scope="col">Tipo de documento</th>
+                <th scope="col">Valor de documento</th>
+                <th scope="col">Nota</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr  ng-repeat="x in activeCash">
+                <td>{{x.id}}</td>
+                <td>{{x.tipo_documento}}</td>
+                <td>{{x.valor_documento | currency:"Q. "}}</td>
+                <td>{{x.nota}}</td>
+                <td>{{x.date}}</td>
+                <td><button type="button" class="btn btn-primary btn-sm" ng-click="">Eliminar</button></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+
 
 </div>
 

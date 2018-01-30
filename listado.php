@@ -2,6 +2,7 @@
 
 $conexion=mysqli_connect('localhost','root','','php_db');
 
+
 $sql = "SELECT id, valor_inicial, fecha_hora FROM caja_chica";
 $result = ejecutarConsulta($sql, $conexion);
 
