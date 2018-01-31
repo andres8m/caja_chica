@@ -106,6 +106,7 @@
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
+
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Añadir documento</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -116,7 +117,7 @@
 
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Tipo de Documento</label>
-                                <select class="form-control" id="selectDocType" name="selectDocType">
+                                <select class="form-control" id="selectDocType" name="selectDocType" ng-model="activeDocument.type">
                                     <option value="Factura">Factura</option>
                                     <option value="Recibo">Recibo</option>
                                 </select>
@@ -126,14 +127,13 @@
                                 <span class="input-group-addon">Q</span>
                                 <span class="input-group-addon">0.00</span>
                                 <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="valorDinero"
-                                       name="valorDinero">
+                                       name="valorDinero" ng-model="activeDocument.value">
                             </div>
                             <br>
 
                             <div class="input-group">
-                                <!--                       <span class="input-group-addon" id="basic-addon1">Nota</span>
-                                 -->                 <input type="text" class="form-control" placeholder="Nota"
-                            aria-describedby="basic-addon1" id="notaDesc" name="notaDesc">
+                               <input type="text" class="form-control" placeholder="Nota" aria-describedby="basic-addon1"
+                                      id="notaDesc" name="notaDesc" ng-model="activeDocument.note">
                             </div>
                             <br>
                             <div class="form-group">
@@ -145,7 +145,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="insertDocument()">Guardar</button>
                         </div>
                     </div>
                 </div>
