@@ -35,25 +35,79 @@
 <!--    <li class="collection-item" ng-repeat="x in myBoxes">{{x.fecha_hora}}</li>-->
 <!--    </ul>-->
 
+    <div ng-if="step==1">
 
-    <table class="table" ng-if="step==1">
-        <thead>
-        <tr>
-            <th scope="col">Numero de Caja</th>
-            <th scope="col">Fecha y hora</th>
-            <th scope="col">Valor</th>
-            <th scope="col">Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr  ng-repeat="x in myBoxes">
+        <div class="row">
+            <div class="col-md-9" >
+
+            </div>
+            <div class="col-md-3" >
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalCreateCash">Añadir nueva caja</button>
+            </div>
+
+            <div class="modal fade" id="modalCreateCash" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Añadir caja</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+
+
+                            <div class="input-group">
+                                <span class="input-group-addon">Q</span>
+                                <span class="input-group-addon">0.00</span>
+                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="valorDinero"
+                                       name="valorDinero" ng-model="newCash.value">
+                            </div>
+                            <br>
+
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="createCash()">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <br>
+
+        <table class="table" >
+            <thead>
+            <tr>
+                <th scope="col">Numero de Caja</th>
+                <th scope="col">Fecha y hora</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr  ng-repeat="x in myBoxes | orderBy:'-fecha_hora'"">
             <td>{{x.id}}</td>
             <td>{{x.fecha_hora}}</td>
             <td>{{x.valor_inicial | currency:"Q. "}}</td>
             <td><button type="button" class="btn btn-primary btn-sm" ng-click="getDetails(x)">Editar</button></td>
-        </tr>
-        </tbody>
-    </table>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+
+
 
     <div ng-if="step==2">
         <div class="row">
@@ -98,6 +152,8 @@
         </div>
 
         <div class="row">
+            <br>
+            <br>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 Añadir nuevo documento
             </button>

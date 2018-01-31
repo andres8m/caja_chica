@@ -8,21 +8,49 @@ var scotchApp = angular.module('caja_chica', [])
         $scope.step =1;
         $scope.activeDocument = {};
         $scope.activeCashObj={};
+        $scope.newCash ={};
+
+        $scope.createCash = function () {
+
+            var request = $http({
+                method: "post",
+                url: "insertar.php",
+                data: {
+                    value: $scope.newCash.value
+                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+
+            request.success(function (response) {
+                    $scope.getAllCash();
+                    alert("Caja creada con exito");
+                },
+
+                function errorCallback(response) {
+
+                });
+
+        };
+
+        $scope.getAllCash = function () {
+            $http.get("/caja_chica/listado.php").then
+            (
+                function(response)
+                {
+                    $scope.myBoxes = response.data;
+                },
+                function(error){
+                    // console.log($scope.trialCompany);
+                    $scope.errorsFounded = error.data.message;
+                    alert($scope.errorsFounded);
+
+                }
+            );
+        };
+
+        $scope.getAllCash();
 
 
-        $http.get("/caja_chica/listado.php").then
-        (
-            function(response)
-            {
-                $scope.myBoxes = response.data;
-            },
-            function(error){
-                // console.log($scope.trialCompany);
-                $scope.errorsFounded = error.data.message;
-                alert($scope.errorsFounded);
-
-            }
-        );
 
         $scope.getDetails = function (obj) {
             $http.get("/caja_chica/detalle_caja.php?link="+obj.id).then
